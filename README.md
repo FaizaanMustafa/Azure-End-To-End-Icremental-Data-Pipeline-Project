@@ -12,6 +12,7 @@
 - SQL
 
 # Methods
+  ## Data Factory
 - We need to create resources in Azure Portal i.e. Azure Sql Database, Data Factory, ADLS Storage Account,Databricks and Access Connector
 - In ALDS Gen2 create three containers i.e. Bronze,Silver and Gold in order to follow Medallion Architecture.
 - In the DataFactory:
@@ -23,7 +24,7 @@
    - We need to create a stored procedure as shown so that it gets updated after the incremnetal load.
    - Now create a new pipeline and add two lookup activity, one for last_load and another for current_load. In the last_load lookup activity parametereize the sql dataet and give it it name as table_name. Go back the the lookup activity and enter teh table_name i.e water_table and below in the query write select * from water_table.
    - In the current_load lookup activity based on the parameters created in the sqldb dataset just enter the car_sales table name and under query enter select max(Date_ID) as max_date from car_sales.
-   - In the copy activity connect both lookup activities and in the source enter the query under expression builder and sink would be adlsgen2. Add the store porcedure and click on import so that it aitomatically puuls the column whcih we create i.e lastload and add the current_lookup activity output under the value section. 
+   - In the copy activity connect both lookup activities and in the source enter the query under expression builder and sink would be adlsgen2. Add the store porcedure and click on import so that it automatically pulls the column which we created i.e lastload and add the current_lookup activity output under the value section. 
   
 
 
