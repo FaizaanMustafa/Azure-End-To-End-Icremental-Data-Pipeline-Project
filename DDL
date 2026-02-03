@@ -15,3 +15,26 @@ create table source_cars_data(
  Product_Name varchar(200)
 );
 
+
+-- create watermark table
+
+create table water_table(
+  last_load varchar(200)
+);
+
+insert into water_table values ('DT00000');
+
+
+--create stored procedure
+
+create procedure updatewatermarktable
+  @lastload varchar(200)
+as
+begin
+  -- start transaction
+begin transaction;
+update water_table
+set last_load = @lastload
+commit transaction;
+end;
+
